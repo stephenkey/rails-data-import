@@ -1,0 +1,39 @@
+<h1>Proof Data</h1>
+
+<p>
+	Take a moment and check your data to be imported. You can edit the data on this page by clicking in the cells.
+</p>
+
+<hr>
+
+<%= form_tag "/data", :html => { :class => "form-horizontal"} do %>
+
+  <table class="table table-bordered">
+  <tr>
+    <th>Title</th>
+    <th>Quantity</th>
+    <th>Condition</th>
+    <th>Description</th>
+  </tr>
+
+  <% header = @spreadsheet.row(1) %>
+  <% (2..@spreadsheet.last_row).each do |i| %>
+
+  	<% # Match the row data to it's column %>
+    <% row = Hash[[header, @spreadsheet.row(i)].transpose] %>
+
+    <tr>
+  		<% # Add each row to the data array to handle multiple datums %>
+	    <td><%= text_field_tag "data[#{i}][title]", row["title"], :class => 'span3' %></td>
+	    <td><%= text_field_tag "data[#{i}][quantity]", row["quantity"], :class => 'span2' %></td>
+	    <td><%= text_field_tag "data[#{i}][condition]", row["condition"], :class => 'span2' %></td>
+	    <td><%= text_field_tag "data[#{i}][description]", row["description"], :class => 'span5' %></td>
+	  </tr>
+
+  <% end %>
+
+  </table>
+
+  <%= submit_tag "Approve & Add Data", :class => 'btn btn-success' %>
+
+<% end %>

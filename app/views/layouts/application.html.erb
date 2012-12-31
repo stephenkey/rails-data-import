@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dataimport</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+
+  <style type="text/css">
+  .table input { border: 0; padding: 0; margin: 0; }
+  .table input:focus, .table input:active { outline: 0 !important; -webkit-appearance: none !important; box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none; }
+  </style>
+
+  <%= csrf_meta_tags %>
+
+</head>
+<body>
+
+	<div class="container">
+
+    <%= yield %>
+
+  </div>
+
+  <%= javascript_include_tag "application" %>
+
+</body>
+</html>

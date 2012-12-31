@@ -1,0 +1,39 @@
+<h1>Import Data</h1>
+
+<% if notice %>
+  <p class="alert alert-info">
+    <%= notice %>
+  </p>
+<% end %>
+
+<%= form_tag '/new', multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload Data", :class => 'btn btn-primary' %>
+<% end %>
+
+<hr>
+
+<% unless @data.empty? %>
+
+  <table class="table table-bordered">
+    <tr>
+      <th>Title</th>
+      <th>Quantity</th>
+      <th>Condition</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+    </tr>
+  <% @data.each do |datum| %>
+    <tr>
+      <td><%= datum.title %></td>
+      <td><%= datum.quantity %></td>
+      <td><%= datum.condition %></td>
+      <td><%= datum.description %></td>
+      <td><%= link_to 'Edit', edit_datum_path(datum) %></td>
+      <td><%= link_to 'Delete', datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+
+<% end %>
